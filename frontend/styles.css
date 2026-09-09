@@ -1,0 +1,468 @@
+:root {
+  --ink: #202522;
+  --paper: #f4f0e8;
+  --cream: #fffdf8;
+  --line: #d7d2c8;
+  --coral: #e9785f;
+  --mint: #b9d8c4;
+  --lemon: #f0d976;
+  --muted: #77756e;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+.hidden {
+  display: none !important;
+}
+.app-shell {
+  min-height: 100vh;
+}
+.auth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr);
+  min-height: 100vh;
+}
+.intro-panel {
+  padding: clamp(3rem, 8vw, 8rem);
+  background: var(--coral);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.intro-panel:after {
+  content: "";
+  position: absolute;
+  width: 35vw;
+  height: 35vw;
+  border: 1px solid rgba(32, 37, 34, 0.3);
+  border-radius: 50%;
+  right: -13vw;
+  bottom: -10vw;
+}
+.eyebrow {
+  font:
+    700 11px/1.2 "Trebuchet MS",
+    sans-serif;
+  letter-spacing: 2px;
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.intro-panel .eyebrow {
+  color: #512d24;
+}
+.intro-panel h1 {
+  font:
+    400 clamp(3.2rem, 7vw, 7.5rem)/0.92 Georgia,
+    serif;
+  letter-spacing: -3px;
+  margin: 0;
+  max-width: 700px;
+}
+.intro-panel h1 em {
+  font-style: italic;
+}
+.intro-copy {
+  font:
+    1.15rem/1.5 Georgia,
+    serif;
+  max-width: 360px;
+  margin: 36px 0;
+  color: #542f27;
+}
+.signal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 72px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.signal-list span {
+  border: 1px solid rgba(32, 37, 34, 0.35);
+  padding: 9px 11px;
+}
+.auth-card {
+  background: var(--cream);
+  padding: clamp(2rem, 7vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.brand-mark {
+  font:
+    bold 22px Georgia,
+    serif;
+  letter-spacing: 1px;
+  margin-bottom: 60px;
+}
+.brand-mark span {
+  color: var(--coral);
+}
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 34px;
+  gap: 26px;
+}
+.tab {
+  border: 0;
+  background: transparent;
+  padding: 0 0 12px;
+  color: var(--muted);
+  font-weight: bold;
+}
+.tab.active {
+  color: var(--ink);
+  border-bottom: 2px solid var(--coral);
+}
+.auth-form h2,
+h2 {
+  font:
+    400 2rem Georgia,
+    serif;
+  margin: 0 0 8px;
+}
+.muted {
+  color: var(--muted);
+  margin-top: 0;
+}
+.auth-form label,
+.health-form label,
+.bmi-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 22px 0;
+}
+.auth-form input,
+.health-form input,
+.bmi-form input {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 10px 0;
+  color: var(--ink);
+  outline: 0;
+}
+.auth-form input:focus,
+.health-form input:focus,
+.bmi-form input:focus {
+  border-color: var(--coral);
+}
+.primary-button,
+.secondary-button {
+  border: 0;
+  padding: 15px 17px;
+  text-align: left;
+  font-weight: bold;
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.primary-button {
+  background: var(--ink);
+  color: var(--cream);
+}
+.secondary-button {
+  background: var(--coral);
+  color: var(--ink);
+}
+.form-message {
+  min-height: 20px;
+  font-size: 13px;
+  color: #b74735;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 25px 5vw;
+}
+.topbar .brand-mark {
+  margin: 0;
+}
+.topbar-meta {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 13px;
+}
+.text-button {
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  padding: 5px;
+}
+.dashboard-view {
+  max-width: 1280px;
+  margin: auto;
+  padding-bottom: 70px;
+}
+.dashboard-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding: 70px 5vw 42px;
+}
+.dashboard-heading h1 {
+  font:
+    400 clamp(2.2rem, 5vw, 4.8rem)/1 Georgia,
+    serif;
+  margin: 0;
+  letter-spacing: -2px;
+}
+.dashboard-heading h1 span {
+  font-style: italic;
+}
+.date-stamp {
+  font:
+    13px Georgia,
+    serif;
+  color: var(--muted);
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 0 5vw 12px;
+}
+.metric-card {
+  padding: 24px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.metric-card strong {
+  font:
+    400 clamp(2.5rem, 5vw, 4.2rem)/1 Georgia,
+    serif;
+  margin-top: auto;
+}
+.metric-label,
+.metric-unit {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.metric-unit {
+  margin-top: 8px;
+}
+.coral {
+  background: var(--coral);
+}
+.mint {
+  background: var(--mint);
+}
+.lemon {
+  background: var(--lemon);
+}
+.ink {
+  background: var(--ink);
+  color: var(--cream);
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 5vw;
+}
+.panel {
+  background: var(--cream);
+  padding: 32px;
+  margin-top: 12px;
+}
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.panel-number {
+  font:
+    italic 22px Georgia,
+    serif;
+  color: var(--muted);
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+.health-form label span,
+.bmi-form label span {
+  font-weight: normal;
+  color: var(--muted);
+  float: right;
+}
+.health-form .primary-button {
+  width: 100%;
+}
+.bmi-result {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+  padding-top: 22px;
+}
+.bmi-result strong {
+  font:
+    3rem Georgia,
+    serif;
+  display: block;
+}
+.bmi-tip {
+  font: 13px/1.5;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+.history-panel {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+.history-list {
+  margin-top: 24px;
+}
+.history-row {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+  font-size: 13px;
+}
+.history-row span:not(:first-child) {
+  color: var(--muted);
+}
+.history-date {
+  font-weight: bold;
+}
+@media (max-width: 760px) {
+  .auth-layout {
+    display: block;
+  }
+  .intro-panel {
+    min-height: 48vh;
+    padding: 2.5rem;
+  }
+  .intro-panel h1 {
+    font-size: 3.6rem;
+  }
+  .signal-list {
+    margin-top: 38px;
+  }
+  .auth-card {
+    padding: 2.5rem;
+    min-height: 52vh;
+  }
+  .brand-mark {
+    margin-bottom: 35px;
+  }
+  .dashboard-heading {
+    display: block;
+    padding-top: 45px;
+  }
+  .date-stamp {
+    margin-top: 20px;
+  }
+  .metric-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .content-grid {
+    display: block;
+    padding: 0 5vw;
+  }
+  .panel {
+    padding: 24px;
+  }
+  .history-panel {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+  .history-row {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+  .history-row span:nth-child(n + 4) {
+    display: none;
+  }
+}
+.todo-panel {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+.todo-form {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 18px;
+  align-items: end;
+  margin-top: 18px;
+}
+.todo-form input {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 12px 0;
+  outline: 0;
+}
+.todo-form input:focus {
+  border-color: var(--coral);
+}
+.todo-form .secondary-button {
+  margin: 0;
+}
+.todo-list {
+  margin-top: 22px;
+}
+.todo-row {
+  display: grid;
+  grid-template-columns: 22px 1fr 28px;
+  gap: 12px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+  font-size: 14px;
+}
+.todo-row input {
+  accent-color: var(--coral);
+  width: 16px;
+  height: 16px;
+}
+.todo-row.completed span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.icon-button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 16px;
+  padding: 4px;
+}
+.icon-button:hover {
+  color: var(--coral);
+}
+@media (max-width: 760px) {
+  .todo-form {
+    grid-template-columns: 1fr 95px;
+  }
+  .todo-form .secondary-button {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

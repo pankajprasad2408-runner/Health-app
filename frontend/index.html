@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pulseboard | Health tracker</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="auth-view" class="auth-layout">
+      <div class="intro-panel">
+        <p class="eyebrow">PERSONAL HEALTH, CLEARLY SEEN</p>
+        <h1>Build a rhythm<br><em>that feels good.</em></h1>
+        <p class="intro-copy">A quiet place to notice the small signals that shape your everyday energy.</p>
+        <div class="signal-list" aria-label="What you can track">
+          <span>01 / weight</span><span>02 / hydration</span><span>03 / sleep</span><span>04 / movement</span>
+        </div>
+      </div>
+      <div class="auth-card">
+        <div class="brand-mark">P<span>/</span>B</div>
+        <div class="auth-tabs"><button class="tab active" data-auth-tab="login">Sign in</button><button class="tab" data-auth-tab="signup">Create account</button></div>
+        <form id="login-form" class="auth-form">
+          <h2>Welcome back.</h2><p class="muted">Your health story is waiting.</p>
+          <label>Username<input name="username" autocomplete="username" required minlength="3"></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="primary-button" type="submit">Enter your dashboard <span>-></span></button>
+        </form>
+        <form id="signup-form" class="auth-form hidden">
+          <h2>Start your record.</h2><p class="muted">Make space for better patterns.</p>
+          <label>Username<input name="username" autocomplete="username" required minlength="3"></label>
+          <label>Password<input name="password" type="password" autocomplete="new-password" required minlength="8"></label>
+          <label>Confirm password<input name="confirmation" type="password" autocomplete="new-password" required minlength="8"></label>
+          <button class="primary-button" type="submit">Create account <span>-></span></button>
+        </form>
+        <p id="auth-message" class="form-message" role="alert"></p>
+      </div>
+    </section>
+
+    <section id="dashboard-view" class="dashboard-view hidden">
+      <header class="topbar"><div class="brand-mark">P<span>/</span>B</div><div class="topbar-meta"><span id="welcome-user"></span><button id="logout-button" class="text-button">Sign out</button></div></header>
+      <div class="dashboard-heading"><div><p class="eyebrow">YOUR DAILY SIGNALS</p><h1>Good morning, <span id="heading-user"></span>.</h1><p class="muted">A glance at what your body has been telling you.</p></div><div id="last-updated" class="date-stamp"></div></div>
+      <div class="metric-grid"><article class="metric-card coral"><span class="metric-label">Latest weight</span><strong id="latest-weight">--</strong><span class="metric-unit">kg</span></article><article class="metric-card mint"><span class="metric-label">Water today</span><strong id="latest-water">--</strong><span class="metric-unit">glasses</span></article><article class="metric-card lemon"><span class="metric-label">Sleep logged</span><strong id="latest-sleep">--</strong><span class="metric-unit">hours</span></article><article class="metric-card ink"><span class="metric-label">Entries</span><strong id="entry-count">0</strong><span class="metric-unit">all time</span></article></div>
+      <div class="content-grid">
+        <section class="panel log-panel"><div class="panel-heading"><div><p class="eyebrow">MAKE A NOTE</p><h2>Log your day</h2></div><span class="panel-number">01</span></div><form id="health-form" class="health-form"><div class="field-row"><label>Weight <span>kg</span><input name="weight" type="number" min="0" step="0.1" placeholder="70"></label><label>Water <span>glasses</span><input name="water" type="number" min="0" step="1" placeholder="6"></label></div><div class="field-row"><label>Sleep <span>hours</span><input name="sleep" type="number" min="0" max="24" step="0.5" placeholder="8"></label><label>Movement <span>optional</span><input name="exercise" type="text" placeholder="Morning walk"></label></div><button class="primary-button" type="submit">Save today's note <span>+</span></button><p id="health-message" class="form-message" role="alert"></p></form></section>
+        <section class="panel bmi-panel"><div class="panel-heading"><div><p class="eyebrow">A USEFUL CHECK-IN</p><h2>BMI calculator</h2></div><span class="panel-number">02</span></div><form id="bmi-form" class="bmi-form"><div class="field-row"><label>Weight <span>kg</span><input name="weight" type="number" min="0.1" step="0.1" placeholder="70" required></label><label>Height <span>cm</span><input name="height" type="number" min="0.1" step="0.1" placeholder="170" required></label></div><button class="secondary-button" type="submit">Calculate BMI <span>-></span></button></form><div id="bmi-result" class="bmi-result hidden"></div></section>
+      </div>
+      <section class="panel todo-panel"><div class="panel-heading"><div><p class="eyebrow">SMALL STEPS</p><h2>Today's to-do list</h2></div><span class="panel-number">04</span></div><form id="todo-form" class="todo-form"><input name="task" type="text" placeholder="Add a wellness task" maxlength="100" required><button class="secondary-button" type="submit" aria-label="Add task">Add <span>+</span></button></form><div id="todo-list" class="todo-list"></div></section>
+      <section class="panel history-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR RECORD</p><h2>Recent entries</h2></div><span class="panel-number">03</span></div><div id="history-list" class="history-list"><p class="muted">Loading your entries...</p></div></section>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
