@@ -45,8 +45,92 @@
         <section class="panel log-panel"><div class="panel-heading"><div><p class="eyebrow">MAKE A NOTE</p><h2>Log your day</h2></div><span class="panel-number">01</span></div><form id="health-form" class="health-form"><div class="field-row"><label>Weight <span>kg</span><input name="weight" type="number" min="0" step="0.1" placeholder="70"></label><label>Water <span>glasses</span><input name="water" type="number" min="0" step="1" placeholder="6"></label></div><div class="field-row"><label>Sleep <span>hours</span><input name="sleep" type="number" min="0" max="24" step="0.5" placeholder="8"></label><label>Movement <span>optional</span><input name="exercise" type="text" placeholder="Morning walk"></label></div><button class="primary-button" type="submit">Save today's note <span>+</span></button><p id="health-message" class="form-message" role="alert"></p></form></section>
         <section class="panel bmi-panel"><div class="panel-heading"><div><p class="eyebrow">A USEFUL CHECK-IN</p><h2>BMI calculator</h2></div><span class="panel-number">02</span></div><form id="bmi-form" class="bmi-form"><div class="field-row"><label>Weight <span>kg</span><input name="weight" type="number" min="0.1" step="0.1" placeholder="70" required></label><label>Height <span>cm</span><input name="height" type="number" min="0.1" step="0.1" placeholder="170" required></label></div><button class="secondary-button" type="submit">Calculate BMI <span>-></span></button></form><div id="bmi-result" class="bmi-result hidden"></div></section>
       </div>
-      <section class="panel todo-panel"><div class="panel-heading"><div><p class="eyebrow">SMALL STEPS</p><h2>Today's to-do list</h2></div><span class="panel-number">04</span></div><form id="todo-form" class="todo-form"><input name="task" type="text" placeholder="Add a wellness task" maxlength="100" required><button class="secondary-button" type="submit" aria-label="Add task">Add <span>+</span></button></form><div id="todo-list" class="todo-list"></div></section>
-      <section class="panel history-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR RECORD</p><h2>Recent entries</h2></div><span class="panel-number">03</span></div><div id="history-list" class="history-list"><p class="muted">Loading your entries...</p></div></section>
+
+      <div class="features-grid">
+        <section class="panel goals-panel">
+          <div class="panel-heading"><div><p class="eyebrow">ACHIEVE MORE</p><h2>Goals</h2></div><span class="panel-number">03</span></div>
+          <form id="goal-form" class="goal-form">
+            <div class="field-row compact">
+              <label>Type
+                <select name="goal_type" required>
+                  <option value="water">Water</option>
+                  <option value="sleep">Sleep</option>
+                  <option value="exercise">Exercise</option>
+                  <option value="weight">Weight</option>
+                  <option value="custom">Custom habit</option>
+                </select>
+              </label>
+              <label>Target value
+                <input name="target_value" type="number" min="0.1" step="0.1" placeholder="8" required>
+              </label>
+            </div>
+            <div class="field-row compact">
+              <label>Title
+                <input name="title" type="text" maxlength="100" placeholder="Drink enough water" required>
+              </label>
+              <label>Unit
+                <input name="unit" type="text" maxlength="50" placeholder="glasses" required>
+              </label>
+            </div>
+            <div class="field-row compact">
+              <label>Frequency
+                <select name="frequency">
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </label>
+              <label>End date
+                <input name="end_date" type="date">
+              </label>
+            </div>
+            <div class="goal-actions">
+              <button class="primary-button" type="submit">Add Goal <span>+</span></button>
+              <button type="button" id="cancel-goal-edit" class="secondary-button hidden">Cancel edit</button>
+            </div>
+            <p id="goal-message" class="form-message" role="alert"></p>
+          </form>
+          <div id="goals-list" class="goals-list"></div>
+        </section>
+
+        <section class="panel streak-panel">
+          <div class="panel-heading"><div><p class="eyebrow">KEEP THE MOMENTUM</p><h2>Streak</h2></div><span class="panel-number">04</span></div>
+          <div class="streak-display">
+            <div class="streak-badge">🔥</div>
+            <div>
+              <div id="streak-value" class="streak-value">0 DAY STREAK</div>
+              <div id="streak-message" class="streak-message">Start with one small win.</div>
+            </div>
+          </div>
+          <div class="streak-meta">
+            <div><span>Best</span><strong id="best-streak">0 days</strong></div>
+            <div><span>Last completion</span><strong id="last-completion">-</strong></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="features-grid">
+        <section class="panel calendar-panel">
+          <div class="panel-heading"><div><p class="eyebrow">YOUR MAINTENANCE</p><h2>Calendar</h2></div><span class="panel-number">05</span></div>
+          <div class="calendar-toolbar">
+            <button id="calendar-prev" class="calendar-toggle" type="button">←</button>
+            <div id="calendar-label" class="calendar-label">September 2026</div>
+            <button id="calendar-next" class="calendar-toggle" type="button">→</button>
+            <button id="calendar-today" class="calendar-toggle small" type="button">Today</button>
+          </div>
+          <div class="calendar-weekdays"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+          <div id="calendar-detail" class="calendar-detail empty">Select a day to see the details.</div>
+        </section>
+
+        <section class="panel todo-panel">
+          <div class="panel-heading"><div><p class="eyebrow">SMALL STEPS</p><h2>Today's to-do list</h2></div><span class="panel-number">06</span></div>
+          <form id="todo-form" class="todo-form"><input name="task" type="text" placeholder="Add a wellness task" maxlength="100" required><button class="secondary-button" type="submit" aria-label="Add task">Add <span>+</span></button></form>
+          <div id="todo-list" class="todo-list"></div>
+        </section>
+      </div>
+
+      <section class="panel history-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR RECORD</p><h2>Recent entries</h2></div><span class="panel-number">07</span></div><div id="history-list" class="history-list"><p class="muted">Loading your entries...</p></div></section>
     </section>
   </main>
   <script src="/static/app.js"></script>
