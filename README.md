@@ -1,84 +1,92 @@
-# Pulseboard Health Tracker
+# Pulseboard — personal health tracker
 
-Pulseboard is a personal health-tracking application that helps users record daily wellness information and understand their progress in one simple dashboard.
+A FastAPI + SQLite application for logging daily wellness data and seeing progress on one dashboard. Register, sign in, log weight / water / sleep / exercise, get BMI analysis, set goals, track streaks, and review history.
 
-The project combines a FastAPI backend, SQLite storage, and a responsive browser frontend. Users can create an account, sign in, log health data, calculate BMI, review previous entries, and manage a personal list of wellness tasks.
+---
 
 ## Features
 
-- User registration and login
-- Secure password hashing with PBKDF2-SHA256
-- Daily health logging for:
-  - Weight
-  - Water intake
-  - Sleep duration
-  - Exercise or movement notes
-- Dashboard metrics for the latest health data
-- Recent health-entry history
-- BMI calculation with:
-  - BMI category
-  - Ideal weight range
-  - Health recommendations
-- Personal to-do list with add, complete, and remove actions
-- Responsive layout for desktop and mobile screens
-- SQLite database persistence for user accounts and health records
+**Accounts**
+- Registration and login
+- Password hashing with PBKDF2-SHA256
 
-## Technology
+**Daily logging**
+- Weight, water intake, sleep hours, exercise and movement notes
+- Dashboard metrics for the latest entry, plus recent history
 
-- Python
-- FastAPI
-- Pydantic
-- SQLite
-- Pandas
-- HTML, CSS, and JavaScript
-- Uvicorn
+**Analysis**
+- BMI calculation with category, ideal weight range and health recommendations
+- Goal setting with progress tracking
+- Streaks, computed per goal
+- Calendar view of logged days
 
-## Project Structure
+**Frontend**
+- Responsive browser UI (desktop and mobile) served by the app
+- Personal wellness to-do list, scoped per user
 
-```text
-HEALTH/
-├── app.py              # FastAPI application and API routes
-├── auth.py             # User registration, login, and password hashing
-├── tracker.py          # Health database operations and validation
-├── analytics.py        # Health record retrieval
-├── BMI_cal.py          # BMI calculations and health tips
-├── frontend/
-│   ├── index.html      # Application interface
-│   ├── styles.css      # Responsive styling
-│   └── app.js          # Frontend behavior and API requests
-└── setup.py            # Database initialization helper
-```
-
-## Run the Application
-
-From the project directory, start the FastAPI server with the project virtual environment:
-
-```powershell
-.\myvenv\Scripts\python.exe -m uvicorn app:app --reload
-```
-
-Open the application at:
-
-```text
-http://127.0.0.1:8000/
-```
-
-The interactive API documentation is available at:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-## API Routes
+## API
 
 | Method | Route | Purpose |
-| --- | --- | --- |
-| `POST` | `/signup` | Create a user account |
-| `POST` | `/login` | Authenticate a user |
-| `GET` | `/dashboard/{user_id}` | Retrieve health records |
+|---|---|---|
+| `GET` | `/` | Serves the frontend |
+| `POST` | `/signup` | Create an account |
+| `POST` | `/login` | Authenticate |
+| `GET` | `/dashboard/{user_id}` | Health records for the dashboard |
 | `POST` | `/health` | Save a health entry |
-| `GET` | `/bmi` | Calculate BMI and recommendations |
+| `GET` | `/bmi` | BMI, category, ideal range and recommendations |
+| `POST` | `/goals` | Create a goal |
+| `GET` | `/goals` | List goals |
+| `GET` | `/goals/{goal_id}` | Fetch one goal |
+| `PUT` | `/goals/{goal_id}` | Update a goal |
+| `DELETE` | `/goals/{goal_id}` | Delete a goal |
+| `GET` | `/streaks` | Streaks across goals |
+| `GET` | `/streaks/{goal_id}` | Streak for one goal |
+| `GET` | `/calendar` | Days with logged data |
+| `GET` | `/calendar/{date}` | Entries for a specific date |
 
-## Notes
+Incoming payloads are validated with Pydantic models.
 
-Health records and user accounts are stored in SQLite. The current to-do list is stored in the browser's local storage and is separated by user ID.
+## Project layout
+
+```
+app.py              FastAPI application and all API routes
+auth.py             registration, login, PBKDF2-SHA256 hashing
+tracker.py          health database operations and validation
+analytics.py        health record retrieval
+BMI_cal.py          BMI calculations and health tips
+goals.py            goal CRUD
+streaks.py          streak computation across goals
+calendar_api.py     calendar endpoints
+dashboard.py        dashboard data assembly
+sleep.py            sleep logging
+water.py            water logging
+exercise.py         exercise logging
+setup.py            database initialisation helper
+frontend/
+  index.html        application interface
+  styles.css        responsive styling
+  app.js            frontend behaviour and API calls
+feature_smoke_test.py   end-to-end smoke test
+```
+
+## Run
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python setup.py                      # initialise the database
+uvicorn app:app --reload
+```
+
+Open `http://127.0.0.1:8000/` — interactive API docs at `/docs`.
+
+The database path can be overridden with the `HEALTH_DB_PATH` environment variable.
+
+## Stack
+
+Python · FastAPI · Pydantic · SQLite · Uvicorn · Pandas · HTML / CSS / JavaScript
+
+---
+
+*Built by [Pankaj Prasad](https://github.com/pankajprasad2408-runner) — 2nd-year B.Tech (AI & Data Science), Arya College of Engineering, Jaipur.*
